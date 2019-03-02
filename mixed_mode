@@ -1,0 +1,14 @@
+Mixed mode :
+----------
+
+	1. whenever operation is performed between "signed int" and "unsigned int",	
+	   the "signed int" is converted to "unsigned".
+
+	2. whenever an operation is performed between "int" and "float", 
+	   the "int" is converted to "float".
+	
+	3. whenever an operation is performed on type smaller than "int",i.e...(char,short)
+	   they will be promoted to "int".
+
+	NOTE:
+	All above is done to avoid accidental overflows during arithmetic operations.

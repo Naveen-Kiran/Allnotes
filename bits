@@ -1,0 +1,12 @@
+BITS:
+	
+	1. No shifting for negative numbers.
+	
+ 	 for 32 bit number.
+      		1>>33 : o/p: undefined
+
+	2. no>>1 : multiplication by 2
+
+	3. no<<1 : division by 2
+
+

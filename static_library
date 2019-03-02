@@ -1,0 +1,59 @@
+Static library:
+--------------
+
+	A library is a collection of fucntions/variables, which we can call from our program.
+	
+	The advantage of library is "Re-usaability" and "Time saving".
+	
+	When a static libary is linked, the code is fully copied in the linking stage.
+
+	By convention/standard, the static libray will have a prefix "lib" and suffix ".a"
+	
+		Ex: libprint.a
+
+Steps to create a static Library:
+----------------------------------
+
+	1. Compile the c code to Object code using
+
+			gcc -c *.c
+	
+	2. Then we can use object code to generate static lib using GNU "ar" command.
+	   {ar stands for archiever}
+	
+			ar -rc libprint.a *.o
+
+		whereas,
+			r -> replace any older file
+			c -> create an arcieve
+
+	3. To use static lib 
+	
+			gcc main.c -o main -L. lprint
+	
+				here -L. will tell linker to kook for libraries in current  directory.
+
+			Otherway is :
+
+				export LIBRARY_PATH=.
+		
+				gcc main.c -o main -lprint
+		
+	To view Library paths:
+	---------------------
+			echo $LIBRARY_PATH
+
+Disadvantages:
+-------------
+
+	If the lib code is updated,we have to recompile your program into new executable.
+
+	Every program in the system that uses static lib contains a copy in its executable.
+
+Advantages:
+----------
+	No dependencies.
+
+	i.e .. we can run the binary into other machine without having specific libraries installed.
+
+

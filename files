@@ -1,0 +1,97 @@
+FIles:
+-----
+There are 2 types of files.
+
+1.Text files(.txt)
+
+2.Binary files(.bin)
+
+	Binary files:
+	------------
+		 contain 0's and 1's.
+	
+	Operations on files:
+	-------------------	
+	1. Opening an existing file. 		fopen(filename,mode) returns fptr
+
+	2. Creating a new file.        		fopen(filenname,mode) return fptr
+
+	3. Closing a file.             		fclose(fptr)
+
+	4. Creating and writing on a file. 	fprintf,fscanf
+
+	The data type of file is "FILE".
+
+	MODES:
+	-----
+	r    : 
+		open for reading.
+	rb   : 
+		open for reading in binary mode.
+
+	NOTE : 
+	       When there is no file existing, when a given mode is r/rb then it will return NULL.
+
+	w/wb : 
+		open for writing normal/binary mode.
+
+	NOTE : 
+	       If file exists 
+			contents will be deleted 
+	       else
+			new file will be created.
+	a/ab :
+		open in append mode and data is added to the end of file.
+	
+	NOTE : 
+		If file doesnot exits file will be created.
+	
+	r+/rb+:
+		open for both reading and writing.
+	
+	w+/wb+:
+		open for both reading and writing.
+	
+	a+/ab+:
+		open for both reading and appending.
+
+	BINARY FILES:
+	------------
+		fread() and fwrite() are used for reading and writing on the binary files.
+
+	fread(address,size,numbers,*fptr);
+
+	fwrite(address,size,numbers,*fptr);
+
+
+
+RANDOM ACCESS IN FILES:
+----------------------
+
+	C supports 3 functions for random accessing on files.
+	
+	1.fseek
+	2.ftell
+	3.rewind
+	
+	1.fseek():
+		It is used to move the file pointer to a specific position.
+	
+		syntax : 
+			int fseek(fptr,offset,position);
+	
+		position defines the point with respect to which the file pointer to be moved.
+		there are 3 vlaues.
+			SEEK_END : denotes end of file.
+			SEEK_SET : deontes starting of the file.
+			SEEK_CUR : denotes current file pointer position.
+	2.ftell():
+		A function ftell() returns the value of current pointer positoin in the file
+			Ex: ftell(fptr);
+
+	3. rewind():
+		It is used to move the file pointer to the beginning of given file.
+		 	Ex : rewind(fptr);
+	
+
+

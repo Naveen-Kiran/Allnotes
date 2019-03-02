@@ -1,0 +1,224 @@
+/*********************---------GIT-------*********************************/
+
+What is GIT ?
+----------
+	-->Git is a "version control system", for tracking changes in the computer files 
+	and coordinating the work on those files among multiple people.
+
+	-->It's primary use is for source code management in software development.
+
+	-->It was initially created by LINUS TORVALDS, for the development of linux kernel.
+	
+There are 3 core areas to the git:
+----------------------------------
+	1. "Working tree" is also known as "untracked area"
+	2. "Staging area" is also known as "Index"
+	3. "Local repository"(.git)
+
+	-->when working with git repository, files and modifications will travel from the 
+	   working tree to the staging area and finish in local repo.
+	
+git init:
+---------
+	create an empty git repository (or) re-initialise an exiting one.
+	
+3 Stages of a git:
+-----------------
+	Files in repository goes through 3 stages before being under version controlling with git.
+
+	Stage 1: untracked
+	------------------
+		The file exists but is not part of git's version control
+
+	Stage 2: staging
+	----------------
+		The file has been added to the version control, but changes have not been commited.
+
+	Stage 3: commiting
+	------------------
+		The changes has beeen commiting to git version.
+
+git status:
+----------
+	To findout which stage a file in a repository is.
+
+git add:
+-------
+	It will add file contents to the staging directory.
+
+	
+git commit:
+----------
+	It Will add files from staging area to local repository.
+	
+git status:
+----------
+	-->It will show you the working tree status.
+	-->It will show 2 things:
+		1. The files in your working tree
+		2. The files in the staging area
+
+git push:
+--------
+	syntax: git push url branch
+	
+	-->It will push the local repository to the remote repository.
+
+Command to see what is in your local repository:
+-----------------------------------------------
+	$git ls-tree --full-tree -r -HEAD
+
+	-->This command will show you all files that git repository is tracking. 
+
+What is a HEAD in git?
+---------------------
+	Head is a refernce to the last commit in the currently checkout branch.
+
+Repository:
+----------
+	It can be either local or remote.
+		
+git clone:
+---------
+	It copies an remote repository from somewhere else to your local computer.
+			
+	syntax:
+		git clone repositoryurl
+
+git pull:
+--------
+	Incorporates changes from a remote repository into the current branch.
+		
+git log:
+-------
+	-->It shows the commit logs.
+	
+	-->Eack log message will contain the SHA , the author, the date and the message.
+		
+git log --oneline:
+-----------------
+	-->It will show one commit per line with the 7 characters of the commit SHA and Message.
+		
+git log --stat:
+-------------
+	-->It will display the files that have been changed in the commit as well as 
+	   number of lines that have been added or deleted.
+
+git show:
+--------
+	syntax:
+		git show commit-id
+	
+	-->It will show only one commit.
+	
+	-->It shows the following information:
+		1. commit
+		2. author
+		3. date
+		4. commit message
+		5. patch information
+
+git checkout:
+------------
+	-->It will revert back the contents of the file present in the repository.
+		
+git diff:
+--------
+	-->It will show the changes between the working area and the staging area.
+
+	
+git remote show origin:
+----------------------
+	-->It will show the remote repositoy url.
+			(OR)
+	-->It will show you the location from where you cloned my repository.
+
+How to change your default git editor ?
+--------------------------------------
+	-->There are 2 ways in which this can be done.
+		
+		1. Using command line:
+		  ------------------
+			git config --global core.editor "vim"
+		
+		2. Using .gitconfig:
+		  -----------------
+			-->Open ".gitconfig" in home folder(/home/naveen)  
+			
+			-->Now run 
+				git config --global core.editor "vim"
+			
+			NOTE: nano for nano editor 
+			      vim for vim editor
+
+git config --list:
+-----------------
+	-->It will show you all the settings present in the .gitconfig
+
+git commit --amend:
+------------------
+	-->Lets say you made a mistake in your commit log message, 
+	   running this command when there is nothing staged lets you 
+	   edit the previous commit message without alterning its snapshot.
+
+	-->Adding the '-m' option allows you to pass a new message 
+	   from the command line without opening the editor.
+			
+		git commit --amend -m "updated message"
+
+git commit --amend --no-edit:
+----------------------------
+	-->The "no-edit" flag will allow you to make the ammendment modifications 
+	   to your commit without changing its commit message.
+	
+	-->This is used when we forget to add one of the files in the previous commit.
+
+git commit -am "message":
+------------------------
+	-->This will perform both addition and commit message at same time. i.e...(git add and git commit -m "message")
+	
+	-->So this will add the files which are tracked by git.
+
+Multi line commit: 
+-----------------
+	git commit -m "title" -m "Description"
+
+How to change older commit ?
+--------------------------
+			
+			
+
+.gitignore:
+----------
+	It specifies intentionally untracked files that git should ignore files already tracked by git are not affected.
+	.gitignore tells git which files it should ignore, it is usually used to avoid commiting temporaray files generated by the compilation stage which are not useful other collabarators.
+
+git revert:
+---------
+	syntax:
+		git revert SHA
+	git revert will create a new commit id , it is opposite of the given SHA.
+	Anything which is removed in the old commit will be added in the new commit
+	and anything added in the old commit will be removed in the new commit.
+git reset:
+	syntax:
+		git reset lastgoodSHA
+	git reset will rewind repository history all the way back to the specified SHA.
+	It is as if those commits never happened , by default git reset preserves the working directory.
+	The commits are gone but the contents are still on the disk.
+	This is the safest option but often you want to undo the commits in one command i.e what "--hard" option does.
+		
+git rm --cached filename:
+	This will inform the git to stop tracking a file which is in the staging area.
+
+todo:
+
+branching:
+
+tagging:
+
+merging:
+
+creating and applying patch:
+
+

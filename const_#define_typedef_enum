@@ -1,0 +1,63 @@
+---------------------------------------------------------------------------------------------------
+               /***	CONSTANT KEYWORD	***/
+---------------------------------------------------------------------------------------------------
+* It tells the compiler that this value cannot be changed.
+
+* const int i =5;
+  i++; // Error : compilation 
+
+*Type checking is performed in constant whereas not performed in #define[PRE_PROCESSING].
+  ex : #define MYVALUE '5.0'
+       int i = MYVALUE;
+
+	while preprocessing it will substitute the value without type-checking.
+
+* const variables are separetly stored in "READ_ONLY SECTION".
+
+---------------------------------------------------------------------------------------------------
+             /***	TYPEDEF KEYWORD		***/
+---------------------------------------------------------------------------------------------------
+* It is used to create new data types, or assign a new name to exiting data types.
+
+* syntax: typedef <data_type> <new data_type>
+
+* example: typedef unsigned char BYTE;
+
+* 	int main()
+	{
+		BYTE ch1, ch2;
+		ch1 = 10, ch2 = 20;
+		printf("ch1 is %d/t ch2 is %d\n",ch1,ch2);
+		return 0;
+  	}
+
+---------------------------------------------------------------------------------------------------
+			   /***	TYPEDEF 	    VS 	 #DEFINE	***/
+---------------------------------------------------------------------------------------------------
+
+		-compilation stage			  -preprocessing stage
+		-new name/another name to data_type       -Data types,Variables
+		-typedef unsigned char *PTR;		  -#define unsigned char* PTR
+		    PTR a,b,c;					PTR a, b, c;
+		    => unsigned char *a, b, c;           	=> unsigned char* a, b, c;
+
+---------------------------------------------------------------------------------------------------
+			/*** 	ENUMS 	***/
+---------------------------------------------------------------------------------------------------
+*enum is used to create new data type.
+
+*enum is used only for integer constants.
+
+*enum is used to create user-defined data types.
+
+*sizeof(enum) == sizeof(integer)
+
+*Addition, Substraction on enum values can be possible.
+
+*You can assign integer value to it.
+
+*scope rule in enum not in #define
+
+*You can assign same values to members in enum.
+---------------------------------------------------------------------------------------------------
+

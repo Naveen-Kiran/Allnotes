@@ -1,0 +1,148 @@
+pihreads:
+--------
+	What is a thread?
+	----------------
+		-->A thread is a smallest sequence of instructions that can be executes independently by the scehduler.
+		-->Process is nothing but multiple threads of execution running asynchronously.
+		-->Thread is also called as light weight process.
+	
+	What is the difference between thread and process?
+	-------------------------------------------------
+		-->Threads share with other threads thier code, data section and OS resources like open files and signals.
+		-->Threads will have thier own stack space, program counter and register set.
+		-->Threads operates faster than process, due to the following reasons:
+			1. thread creation is much faster.
+			2. context switch between threads is much faster: 
+				REASON:we only have to save and restore PC, stack pointer and registers.
+			3. threads can be terminated easily.
+			4. communication between threads is much faster.
+
+	Similarities between threads and process?
+	----------------------------------------	
+		-->Like process, threads share cpu and only one thread running at a time.
+		-->and like process if one thread is blocked, another thread can run.
+		-->within in a process, threads will execute sequentially.
+	
+	API to create a thread:
+	----------------------
+		#include <pthread.h>
+		Library: lpthread
+	syntax:
+		pthread_create(pthread_t *tid, const pthread_attr_t *attr, void *(*func)(void *), void *arg);
+
+	NOTE:
+		-->When the main() thread returns/terminate, it terminates the whole process, this includes all the other threads.
+		-->To avoid this, we have to use pthread_join()
+
+	pthread_join:
+			pthread_join(pthread_t tid,void **value_ptr);
+		It will block the calling thread untill the thread with identifier which equals to the 1st arg is terminates.
+
+
+	pthread_self():
+		pthread_self() returns the thread id of the process.
+	
+	pthread_exit():
+		void pthread_exit(void * retval);
+
+	pthread_exit has 2 different roles.
+	----------------------------------
+	1. If it is used in the main thread, it waits until all the user level threads terminates.
+	2. If it is used in a thread function, it works like a exit call.
+
+
+	Diff between pthread_join() and pthread_exit():
+	----------------------------------------------
+		-->pthread_exit() will terminate the thread that is called from.
+
+		-->If you call it from your main thread, the main thread will terminate 
+		   and your spawned (created) threads continue its execution.
+		   so anything you write after pthread_exit() in the main thread will not get executed.
+
+		**-->Useful in the scenario in which main thread has spawn threads.
+
+		-->pthread_join will suspend the execution of the current running thread until the particular thread you want is terminated.
+		   After that it resumes its execution.
+
+		**-->Useful when we have to wait until a particular thread completes its exection.
+	
+		-->So if you write exit/return in your main thread, the whole process will be terminated.
+		   but if you write pthread_exit() only that particular thread will terminate and remaining threads continue its execution.
+		
+
+	pthread_detach():
+	----------------
+		syntax:
+			int pthread_detach(pthread_tid):
+		-->Each Thread consumes resources, this resources can be released by thread system in any of the 2 ways.
+			1. If another thread calls pthrea_join then upon completion of pthread_join the thread resources are released.
+			2. if thread calls pthread_deatch the thread resources will be released instantly when thread exits.
+
+	pthread_once():
+			It will execute only once for the 1st thread.
+
+	pthread_cancel():	
+			int pthread_cancel(pthread_t thread);
+		this function will only send a cancellation request to a thread
+		The target thread when it recives a cancellation request the reaction depends on the 2 attributes.
+		1. state
+		2. type
+
+		1. state :	
+				pthread_setcancelstate(int state, int *oldstate);
+
+				This function sets the cancelability state of the calling thread to the given value in the state,
+	the previous state of the thread is returned in the buffer pointed by old state.
+
+	The value of the state can be PTHREAD_CANCEL_ENABLE, PHTREAD_CANCEL_DISABLE
+
+	The default value is PTHREAD_CANCEL_ENABLE.
+	
+		2. type:
+			pthread_setcanceltype(int type, int *oldtype);
+
+			This function sets 
+			
+						.
+	the type values can be PTHREAD_CANCEL_DEFERRED, PTHREAD_CANCEL_ASYNCHRONOUS
+	The default option is PTHREAD_CANCEL_DEFERRED.
+			It means the cancellation request is deferred until the thread calls a function that is a cancellation point.
+	PTHREAD_CANCEL_AS
+			THreads can be cancel at any time upon receiving the cancellation request.
+
+	what is CANCELLATION_POINT ?
+	---------------------------
+			They are certain functions which posix standard defines to allow the thread to be cancelled.
+				man pthreads ->cancellation points
+
+	Pthread provides user specific cancellation point :
+				pthread_testcancel()
+
+
+
+	void pthread_cleanup_push(void (*routine)(void *), void *arg)
+		the pthread_cleanup_push() pushes routine on the top of the stack of cleanup handlers.
+		when the routine is later invoked it will be given arg as the argument.
+		this cleanup handler will be called in the following circumstances
+		1. when the thread is cancelled 
+		2. when a thread terminates by calling pthread_exit()
+		3. when a thread calls pthread_cleanup_pop()
+
+
+	pthread_yield:
+			syntax:  
+				int pthread_yield(void);
+	calling pthread_yield by any thread will giveup the cpu to other threads.
+	the current thread will be placed in the end of the run queue.
+	and another thread will be scheduled by the scheduler.
+
+
+	ATTRIBUTE:
+			attributes are a way to specify behaviour that is different from the default.
+		when a thread is created with pthread_create an attribute object can be specified.
+		ATTR FUNCTIONS:	
+			there are 3 functions:
+				pthread_attr_init :	will create a default attr.
+		then there are functions which can change the attr.
+				pthread_
+

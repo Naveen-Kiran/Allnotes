@@ -1,0 +1,62 @@
+cd  	: to move to home directory
+
+cd -	: to move to previous directory
+
+cd ~/   : to move to home directory and open the directory/files in home(/)
+
+touch   : to create file
+
+:$      : to move end of the file
+
+$$      : it will print the pid of pwd
+          ex:echo $$
+
+make    : to compile and execute .c file
+	  vi first.c
+	  make first => it will produce executable first
+
+ls      : it will list all files and directories in pwd
+
+ls -al  : it will lilst all files and directories including hidden files and directories
+
+__DATE__: it will print date format in MMM:DD:YYYY
+
+__TIME__: it will print time format in HH:MM:SS
+
+__LINE__: it will print the current line 
+
+__FILE__: it will print the file name in which it is called
+
+__FUNC__: it will print the function name
+
+file    : it will print the type of the filename
+          ex: file first.c
+	      ASCII file
+
+	  ex: file first
+	      first: ELF 64-bit LSB  executable, x86-64, version 1 (SYSV), dynamically linked, for GNU/Linux 2.6.24.
+
+	 NOTE: To convert into 32-bit 
+	      gcc first.c -o first -m32
+
+              first: ELF 32-bit LSB  executable, Intel 80386, version 1 (SYSV), dynamically linked, for GNU/Linux 2.6.24.
+
+du     : it will print the disk usage in pwd 
+
+du -sh : it will print the disk usage in pwd in bytes
+
+du -sh filename:  it wil print the disk usage of particular file
+
+find   :
+
+head   :
+
+tail   :
+
+cat    :
+
+tree   :
+
+Environment variable:
+	
+		setenv,putenv,getenv.

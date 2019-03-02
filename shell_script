@@ -1,0 +1,14 @@
+Terminals can display text in color as well as allow formatting with the help of escape sequences.
+	Escape sequence = escape character + format code + 'm' => "escape[formatcodem"
+	
+	escape character can be \e, \033 or \x1
+	
+	format code for RED is 31
+	
+	To print text in RED 
+			echo -e "\e[31mhelloworld"
+
+	To reset color in formatting, format code is 0
+			echo -e "\e[0m"
+
+	

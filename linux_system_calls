@@ -1,0 +1,162 @@
+LINUX_SYSTEM_CALL:
+-----------------
+
+	What is fd ?
+	------------
+	fd is an integer, that is uniquely identifies an open file of the process.
+
+	fd table:
+	--------
+		Collection of integer array indexes that are fd's in which elements are pointers to file table.
+	
+		Each process will have a unique fd table.
+
+	Standard fd's:
+	-------------
+		When any process starts, it has 3 fd's associated.
+
+		0:stdin
+		1:stdout
+		2:stderr
+
+	Diff between stdout and stderr:
+	------------------------------
+		stdout is fully buffered, whereas stderr is not buffered.
+
+		In other words stdout will flush the buffer when the programmer ask for it or when it is most convenient.
+
+		stderr writes the message immedaitely.
+
+		Basically stdout is used for regular maessages and 
+			  stderr for diagnostic ,error messages.
+
+	Redirection:
+	-----------
+		In linux there are 2 output streams stdout and stderr.
+	
+		The classic redirection operator[command > file] will only redirect stdoutput file. 
+		and stderr will be displayed on the terminal.
+	
+	To redirect stderr,
+			 [command 2> file];
+
+		NOTE: Do not keep space before redirection.
+		
+	To redirct stdout,
+			[command 1> file].
+	
+	To redirct both stdout and stderr.
+			[command > file1 2> file2]
+
+	To redirct stdout and stderr to a single file :	
+			[command > logfile 2>&1]
+
+	How to redirect output to screen and to the file ?
+	
+	Tee:
+		[command | tee logfile] => [command > path to file] for stdout
+		[command 2>&1 | tee logfile] for both stdout and stderr
+		
+		
+	OPEN:
+	----
+		int fd = open(name,flags);
+	
+		SUCCESS:
+			The file is opened and a file descriptor is returned.
+	
+		ERROR:
+		 	 Negative integer is returned.
+
+	CLOSE:
+	-----
+		close(fd);
+
+		It is used to close the file.
+			 0 - Success.
+			-1 : failure
+	READ:
+	----
+		int read(fd,buf,count);
+	
+		OS tries to read count bytes from the open fd and store it in the buffer.
+		
+		return value:
+		------------
+			Number of bytes actually read.
+			and this can be less than count.
+		
+			0  : End of the file is reached.
+	        	-1 : failure.
+
+	WRITE:
+	-----
+		int write(fd,buf,count);
+		
+		OS writes count number of bytes from the buffer to the open fd.
+	
+		return value : 
+		-------------
+			SUCCESS:
+				Number of bytes that are actually returned.
+				
+			FAILURE:
+				Negative value is returned.
+
+	LSEEK:
+	-----
+		int lseek(fd,offset,mode);
+	
+		The file location pointed by the open file is changed to new value, the new value is calculated by adding base with the offset,		       the base is selected according to the mode.
+
+		Return  value : 
+		-------------
+			SUCCEES:
+				the new file location.
+			FAILURE:
+				negative int.
+
+	ACCESS:
+	------
+		The access() system call determines whether the calling process has access permission to a file.
+
+		It can check any combination of read, write and execute permission, 
+		
+		It can also check for file existence.
+		
+		Access call take 2 arg's: 
+				1.filepath to check 
+				
+				2.combination of permissions to check.
+		
+			EX:
+			   F_OK : check for file existence.
+				   
+			   R_OK : Check for read permission.
+			
+		           W_OK : Check for write permission.
+			
+			   X_OK : Check for execute permission.
+				
+			NOTE:
+				we can use bitwise OR(|), to check multiple permissions.
+			
+			Return value :	
+				 0 : -success
+				-1 : failure
+	
+	system:
+	------
+		syntax: 
+			int system(const char* cmd);
+
+		system() is used to invoke an o.s cmd from c/c++ program.
+	
+		Using system(), we can execute any command that can be run on the terminal.
+
+		Return value: 
+				 0  : success.
+				-1  : Error
+
+
+	

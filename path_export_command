@@ -1,0 +1,20 @@
+	when we execute "hello" executable in the pwd(whereas "./hello" will run).
+
+	it will not execute since its path is not present in "echo $PATH"
+
+	but while executing (ls, pwd,....), it will execute since there paths are located in "echo $PATH".
+
+	So to add present path to $PATH:
+	
+		PATH=$PATH:pathname
+
+	now we can run the excutables.
+
+To tell compiler not to remove tempory files:
+--------------------------------------------
+		$gcc --save-temps hello.c
+
+	it will produce all intermediate files like 
+		
+		hello.i hello.o hello.s hello
+

@@ -1,0 +1,53 @@
+Storage classes in c:
+--------------------
+	What is a storage class ? 
+	-----------------------
+		It determines the "scope" and "lifetime" of a varaiable.
+
+	What is scope ?
+	-------------
+		scope/ visisblility tells you about the part of a program that the variable can be accessed .
+
+	what is lifetime ?
+	----------------
+		It determines how long the value will be present in that particular location.
+
+----------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------
+storage/specifier |   storage        |     intial value  |       scope       |       linkage    |            lifetime      
+------------------|------------------|-------------------|-------------------|------------------|---------------------------------------
+------------------|------------------|-------------------|-------------------|------------------|---------------------------------------
+auto		  |  Stack segment   |	   Garbage       |    within block   |     Internal     |
+                  |	             |	                 |	             |      linkage     |          End of block 
+------------------|------------------|-------------------|-------------------|------------------|---------------------------------------
+register	  |  CPU registers   |     Garbage       |    within block   |     No-linkage   |          End of block
+------------------|------------------|-------------------|-------------------|------------------|---------------------------------------
+static 	 	  |  Data segment    |	   Zero		 |    within block   |     Internal     |
+		  |		     |			 |		     |      linkage     |        Till end of the file
+------------------|------------------|-------------------|-------------------|------------------|---------------------------------------
+extern 		  |  Data segment    |	   Zero	         |    Global/Multiple|	   External	|
+		  |		     |			 |		     |	    linkage	| 	Till end of yhe program 
+		  |		     |			 |    files          |                  |
+------------------|------------------|-------------------|-------------------|------------------|---------------------------------------
+
+NOTE : 
+	By default all functions are Global, so that they can accessable from other files through extern keyword.
+       	
+	To make functions not accessable use "static", then that functions are access within that particular file.
+
+NOTE : 
+	Gloabal variables can be defined but it cannot assign globally.
+	
+	Ex : 
+		int p = 10; //correct
+	     
+		p =15;      //wrong
+
+NOTE : 
+	You cannot access register variable
+       
+	Since it doesn't have memory, it doesn't have memory address.
+
+
+
+

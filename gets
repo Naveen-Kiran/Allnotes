@@ -1,0 +1,8 @@
+gets:
+	In order to use gets safely, we have to know the exactly how many characters we are reading,
+	so that we can make buffer large enough.
+		
+	Instead of using gets() we can use fgets().
+	
+	
+

@@ -1,0 +1,31 @@
+Calling Conventions:
+-------------------
+	Calling conventions specifies:
+
+		1. How args are passed to a function.
+		2. How return values are passed back out of a function.
+		3. How the function is called.
+		4. How the function is managed its stack in stack frame.
+
+	In-short, the calling conventions specifies how a function call in c/c++ is converted to assembly language.
+
+	There are 3 calling conventions:
+		1.stdcall
+		2.cdecall
+		3.fastcall
+
+	NOTE :
+		-> Default calling convention is "cdecall" for linux and windows.
+
+		-> caller : calls the function.i.e function which called.
+		
+		-> calle: Calle is the function getting called by caller.
+
+	cdecall:
+
+		In "cdecall" subroutine args are passed on the stack right to left.
+
+	sdtcall:
+
+		In "stdcall" subroutine args are passed on the stack left to right.
+

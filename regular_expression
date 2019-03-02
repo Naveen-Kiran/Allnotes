@@ -1,0 +1,129 @@
+			***REGULAR_EXPRESSION***
+-------------------------------------------------------------------------------
+. Each character in Regular expression may be one of 2 types.
+  1. Normal characters 
+  2. Special characters
+
+1.Normal characters :
+-------------------
+	.are any characters except special character which are below:
+	
+	.the regular expression "cat" contains 3 normal characters(c,a,t) it will match the following patterns
+           cat, Concatenate 
+
+2.Special characters/Meta characters :
+-------------------------------------
+
+	 1.Character set / character classes :"[]"
+   	   ---------------------------------
+		[] - 	this groups a characters into character set.
+			will match a single character from the set.
+		order of the characters inside character doesnot matter.
+	
+		Ex : gr[ae]y will match both "gray and grey".
+
+		use - to specify a range of charcters
+		Ex : [0-9] will match a single digit between 0 and 9.
+	
+		Ex : [0-9A-Fa-fxX]    will match any hexa decimal number
+		Ex : 0[xX][0-9A-Fa-f] will match any hexa decimal number starting with 0x/0X(number)
+
+	2.Negated character classes :"^"
+          -------------------------
+ 		 ^(carat), placing a carat after the opening bracket [ negates the character class
+			   the result is the character class matches any charcter that is not in the character class.
+ 		Ex : grep [^0-9] 
+		     it will match any character that is not a digit.
+
+	3.Short hand character classes :
+	  ----------------------------
+ 
+ 		\d	[0-9] 
+  		\w	[a-zA-Z0-9_]
+  		\s	space characters matches a single white space character and tab [\s\t]
+ 		\D	[^\d]   
+  		\W	[^\w]
+ 		\S	[^\s]
+
+	4.Wild card character :"."
+	  -------------------
+  		It matches a single character without caring what the character is 
+  		Exception is new line character
+ 		 .	[^\n]
+
+	5.Optional character : "?"
+	  ------------------
+		? 	this symbol tells the computer that the preceding character may/may not be present in the string to be matched
+     			i.e..  It will match either zero or one of the preceding character
+		Ex : colou?r will match both colour and color
+		        
+		Ex : ab?c   ac abc
+
+	6.Backslash character :
+	  -------------------
+		Use slash(\) to treat a normal character that would otherwise have special meaning.
+		i.e.., It will remove the special functionality associated.
+	
+		Ex : \.   will match charcter .
+		     \?   will match charcater ?
+		     [.?] will match both . and ?
+
+	7.Alternation : "|"
+
+		Matches a single regular expression out of possible regular expressions.
+		Ex : cat|dog will match either cat or dog.
+
+	8. Repetation : "*"
+		* matches preceding character zero or more times.
+		+ matches preceding character one or more times.
+
+		Ex : From a group of strings hello,helo,help,heo, : hel*o matches heo,helo,hello
+								    hel+o matches helo,hello
+ 	9. Lazy and Greedy regular expression :
+
+		Repeatation in regular expression by default is greedy.
+		they try to match as many repetations as possible.
+		the ? as the repetation quantifier changes the behaviour to non greedy or lazy
+		
+		Ex : EEEAiiZUUUUAOZEEE
+		
+		Greddy means match longest possible string
+		Lazy means match shortest possible string.
+		
+		Ex : The greedy h.+l    matches hell in hello
+		     but the lazy h.+?l matches hel in hello
+
+	10. Anchors : "^" "$"
+
+		^ matches the position before the first character in the string
+		$ matches the position after  the end character in the string
+
+		Ex : ^success will match only a line that begins with the line "success" but not with the line that begins with "unsuccessful".			    $cat will search cat at the end of the string
+			i love cat 
+			cat
+			cat$
+		     it will display "i love cat"
+			where as 
+			^cat
+		     it will display "cat"
+	
+		NOTE : use both anchors together to check the string exactly follows the pattern
+			Ex : ^....$
+			     success
+			     successful
+			    ^success$
+					only success will display.
+
+	11. Explicit Repetation :
+	
+		(text){0,1} will match the text zero or one times.
+	
+		(text){1}   will match the text one time.
+	
+		(text){1,}  will match the text one or more times
+
+		(text){0,}  will match the text zero or more times
+
+		(text){2,3}  will match the text two or three times.
+
+

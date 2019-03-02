@@ -1,0 +1,28 @@
+/****************STRUCTURES*********/
+
+* structures are used to create user-defined data types from c provided data types.
+
+* structure creation
+
+	1.struct abc
+	  {
+		char ch;
+		int  ii;
+	  };
+	
+	  struct abc var;
+	
+
+	2.typedef struct abc
+	  {
+		char ch;
+		int  ii;
+	  }var;
+
+	var.ch = 'a';
+	var.ii = 12;
+	
+	struct abc var = {
+  				.ch = 'b',
+				.ii = 12,
+			 }

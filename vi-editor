@@ -1,0 +1,94 @@
+				VI EDITOR
+				---------
+	* It is used to create new file or to modify existing files.
+	* vi is command to open vi editor
+	* It is classified into 3 types
+		1. Command mode 
+		2. Input or Insert mode
+		3. Ex command mode
+	* The default mode is command mode
+	* The following are the commands to shift from command mode to insert mode
+		1. A -> It places cursor at end of the current line.
+		2. a -> It places cursor at right side of the cursor line.	
+		3. I -> It places cursor at beginning of the current line.
+		4. i -> It places cursor at left side of the cursor line.
+		5. O -> It inserts new line above the cursor.
+		6. o -> It inserts new line below the cursor.
+	* "ESC" is the key to shift from inser mode to command mode.
+	* ":"   is the command to shift to Ex command mode from commmand mode.
+
+	Command Mode Commands:
+	---------------------
+	
+		In vi editor command mode, keybord arrows are not allowed to navigate, to navigate we can use h.j.k.l
+		Here n means any number.
+	
+			 		k(nk)	(like up arrow)
+
+	1.	h(like left arrow))				   l(like right arrow)
+				
+					j(nj)   (like down arrow)
+	
+	2.	w(nw) -> next word starting.
+		e(nw) -> word ending
+		b(ne) -> word beginning
+		
+	3. 	$ -> End of the cureent line(end key)	
+		^ -> Beginning of the current line(home key)
+	
+	4.	H -> Beginning of the current page.
+		M -> Middle    of the current page.
+		L -> End       of the current page.
+	
+	5.	ctrl f -> forward  on page(pgdn)
+		ctrl b -> backward on page(pgup)
+
+	6.	x(nx) -> Delete current   character(del key)
+		X     -> Deletes previous character(backspace key)
+	
+	7.	dw(ndw) -> Delete current word
+		dd(ndd) -> Delete current line
+		d$      -> Delete current position to end of the line
+		d^	-> Delete current position to beginning of the line
+		dgg	-> Delete cursor position to beginning of the line 
+		dG	-> Delete cursor position to end of the file
+ 
+	8.	yw(nyw) -> To copy a word
+		yy(nyy) -> To copy a line
+		y$	-> It copies current position to end of the line
+		y^	-> It copies current position to beginnning of the line
+
+	9.	b	-> paste below the cursor
+		p	-> paste above the cursor
+	
+	10.	J	-> To join a line
+	
+	11.	cc	-> To clear a line
+		
+	12.	u	-> Undo
+	
+	13.	zz	-> Save and quit
+	
+	Ex Command Mode Commands:
+	------------------------
+	
+	:w		-> Save without quit
+	:w filename	-> save with given filename
+	:q!		-> quit without save
+	:wq		-> save and quit
+	:n		-> places cursor at nth line
+	:$		-> places cursor at last line of the file
+	:set nu		-> set line numbers
+	:set nonu	-> remove line numbers
+	:!<unix command>-> execute unix commands
+	:/string/	-> top to bottom search
+	:?string?	-> bottom to top search
+ 	:starting line no, endinf line no s/lid strig/new string/gi -> search and relace string
+		Ex: 1,$ s/unix/linux/gi here gi means ignore case sensitive
+		    1,$ s/^/unix 	-> it adds unix at beginning of ecah lin
+		    1,$ s/$/j		-> it adds j at end of each line
+ 
+	:nd		-> it deletes nth line 
+	:3d 		-> it deletes 3rd line
+	:$d		-> it deletes last line
+	:4,7d		-> it deletes 4th line to 7th line	

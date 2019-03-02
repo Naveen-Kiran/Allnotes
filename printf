@@ -1,0 +1,7 @@
+sprintf:
+	It stands for string print.
+
+	Instead of printing on the console, it stores output on charactet buffer which is specified in the 1st arg of sprintf.
+	
+	syntax : 
+		int sprintf(char *buf,const char *str,...); 

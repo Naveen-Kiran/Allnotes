@@ -1,0 +1,45 @@
+Dynamic library:
+--------------
+
+Object file comes in 3 flavors:
+
+	1.Relocatable
+
+	2.Executable
+
+	3.Shared
+
+	Reloacatable object files :
+	-------------------------
+	It contains Code and Data in a form which can be combined with other Object-files at Linking time to create an Executable.
+
+	Executable object files:
+	-----------------------
+	It contains Binary code and Data in a form which can be copies into memory and execute.
+
+	Shared object files :
+	--------------------
+	These are the object files which can be loaded into memory and linked dynamically at either Load/Run time by a linker.
+
+	Shared libraries are loaded into memory by the programs when they started.
+
+	when a shared library is loaded into memory properly, then all programs that start later automatically uses already loaded shared lib.
+
+	Steps to create Dynamic library :
+	---------------------------------
+		1. create object files and pass -fPIC to generate "position independent" code.
+				
+ 					gcc -c -fPIC *.c 
+		
+			Position Independent code means that the generated machine code is not dependent on being located at a specific address 		       in order to work
+
+			Ex : Jumps would be generated as related rather than absolute 	
+
+		2. To create a shared lib 
+				
+				 	gcc -shared -o libprint.so *.o 	
+
+		3. To use
+					gcc main.c -o main -L. lprint
+
+

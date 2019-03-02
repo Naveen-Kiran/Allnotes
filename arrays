@@ -1,0 +1,77 @@
+1-D array:
+---------
+	A pointer that points to 0th element of the array and a pointer that points to whole array are totally different.
+	
+		Ex : int arr[5] = {1,2,3,4,5}; 
+	    
+		     int *ptr1 = arr;
+	  
+		    int (*ptr2[5]) = arr;
+
+		when we perform increment on ptr1 and ptr2, we get different addresses like 1004 and 1020.
+
+2-D array:
+---------
+	An array of 1-D array is known as "2-D array".
+
+	It is also known as matrix.
+
+	Matrix is a table of rows and columns.
+
+	Ex : int arr[2][3]; => 2 rows and 3 columns
+
+	Initialisation of 2-D array :
+	----------------------------
+		There are 2 ways to initialise 2-D array during declaration:
+
+		1. int arr[2][3] = { {1,2,3},
+				     {4,5,6} };
+
+		2. int arr[2][3] = {1,2,3,4,5,6};
+
+	Size of array is : 
+			rows * columns * sizeof(array_type)	
+	
+	When we initialise a 1-D array during declaration we can skip the size of it,
+	
+	but with 2-D array we need to always specify the 2nd dimension(columns).
+
+	Ex :
+	   int arr[]     = {1,2,3,4,5};  // valid
+
+	   int arr[2][2] = {1,2,3,4};   //valid
+
+	   int arr[][2]  = {1,2,3,4};   //valid
+
+	   int arr[2][]  = {1,2,3,4};   //Invalid
+
+	   int arr[][]   = {1,2,3,4};   //Invalid
+
+		NOTE : To check warnings and errors for above 
+
+			gcc array.c -o array -Wall
+
+
+	To access 2nd element of 1st row in array compiler will calculate 
+	
+			offset = 1 * column_no + 2	
+
+	Dereferncing  a pointer to array gives the base address of the array.
+
+		*(arr+i) : points to the base address of the ith 1_d array.
+	
+	NOTE: 
+		The address of arr+i ,*(arr+i) is same, but the base type is different.
+	
+		base type of arr+i is pointer to 2 integers.
+		
+		int (*ptr)[2];
+	
+		base type of *(arr+i) is pointer to integer.
+		
+		int *ptr;
+
+		To access individual elements of 2-D array we use *(*(arr+i)+j).
+`
+
+
