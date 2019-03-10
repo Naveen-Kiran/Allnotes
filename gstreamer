@@ -1,0 +1,156 @@
+/***********************************************GSTREAMER*********************************************************/
+-----------------------------------------------          ---------------------------------------------------------
+GSTREAMER:
+---------
+-->It is a development framework for creating applications like media player, video editor, streaming media broadcaster and so on.
+
+-->Gstreamer is a set of libraries and plugins that can be used to implement various multimedia applications ranging from 
+   Desktop players, Audio-Video recorders, Multimedia servers, Trancoders ...etc.
+
+-->Applications are built by constructing a pipeline composed of elements.
+
+To install gstreamer :
+--------------------
+	sudo apt-get install gstreamer-tools
+
+what is a Pipeline ?
+------------------
+-->It is a collection of elements.
+
+-->Applications are built by constructing a pipeline composed of elements.
+
+	
+what is an Element ?
+------------------
+-->Element is an object which performs some action on a multimedia stream.
+
+-->Element is a most important class of objects in gstreamer.
+
+-->You will usually create a chain of elements linked together and let data flow through this chain of elements.
+
+-->An element has one specific function. 
+   such as, 
+	-->Capture from a hardware device.
+		 Ex : camera, microphone.
+	
+	-->Render (display) to a hardware device.
+		 Ex : speaker, lcd display.
+	
+	-->Decode and Encode between formats.
+	
+	-->Mix multiple streams.
+
+	-->Reading a file.
+	
+-->Elements have input and output pads called "Sink pad" and "Source pad".
+
+-->Data flows from one element source pad to the another element sink pad.
+	
+-->Application links elements together on pads to construct a pipeline.
+
+-->A sink element has only sink pad and source element has only source pad.
+	
+What is a Pad ?
+-------------
+-->Pads are elements input and output, where you connect other elements.
+
+-->They are used to negotiate links and data flow between elements in gstreamer. 
+
+-->A pad is a connection point between element.
+
+-->Source pad provides data.
+
+-->Sink pad consumes data.
+	
+	
+What is Downstream and Upstream ?
+-------------------------------
+-->Downstream and Upstream are used to describe direction in the pipeline.
+		From Source to Sink   is called "Downstream".
+		From Sink   to Source is called "Upstream".
+
+Command line Tools :
+------------------
+	1.gst-inspect :	
+	-------------
+		-->It is tool that prints out information of available gstreamer plugins.
+		-->It also prints information about a particular element.
+		-->When "gst-inspect" is run without any argument, it will print list of plugins and elements.
+	
+		Examples:
+			gst-inspect filesrc
+			gst-inspect sink
+
+	2.gst-launch :
+	------------
+		-->It is a tool that buids and run basic gtreamer pipeline.
+			
+	3.gst-launch playbin uri=file:///path.mp4
+
+What is a Bin ?
+-----------------
+-->A Bin is a container for collection of elements.
+
+-->Bins are allow you to combine a group of linked elements into one logical element.
+
+-->You donot deal with individual element anymore, but with just one element the bin.
+
+-->A pipeline is a special subpipe of a bin, that allows execution of all of its contained child elements.
+
+What is a Cap ?
+-----------
+-->Cap is nothing but "Light weight ref counted object" describing media types.
+	caps = media_types + set of properties.
+
+-->Caps(capabilities) of a pad specify what kind of information can travel through the pad
+	Ex:	1.rgb video with resolution of 320*200 pixels and 30 frames/sec
+		2.16 bits per sample audio, 5.1 channels at 44100 sample/sec
+		3.compressed formats like mp3, h264.
+
+-->A single pad can support multiple capabilities .
+	Ex: A vidoe sink can support video in different types of format.
+            Rgb, yuv, ....
+
+-->Capabilities can specify in ranges.
+	Ex: Audio sink can support sample rates from 1-48000 samples/sec.
+
+what is Negotiation ?
+-------------------
+-->Inorder for to elements to be linked together they must share common set of capabilities, otherwise they could not understand each other
+
+-->Negotiation  is a process in which 2 linked pads agree on a common type and thus the capabilities of pad becomes fixed.
+
+What is Properties ?
+------------------
+-->The properties is the primary and most important way of controlling how an element behaves.
+
+-->Plugins provide additional properties to provide more information about thier configuration how to configure the element
+	gst-inspect is useful tool to query the property of a particular element.
+
+
+How to create a pipeline ?
+------------------------
+
+	gst-launch-1.0 videotestsrc ! autovideosink
+	
+   To change pattern :
+   ----------------
+	gst-launch-1.0 videotestsrc pattern=snow ! autovideosink
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		 	
