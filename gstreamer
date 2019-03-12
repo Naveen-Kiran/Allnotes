@@ -85,7 +85,12 @@ Command line Tools :
 	------------
 		-->It is a tool that buids and run basic gtreamer pipeline.
 			
-	3.gst-launch playbin uri=file:///path.mp4
+		gst-launch playbin uri=file:///path.mp4
+
+	3.gst-discoverer :
+	----------------
+		It is a tool that can be used to print basic meta data and stream information about a media file.
+
 
 What is a Bin ?
 -----------------
@@ -138,19 +143,94 @@ How to create a pipeline ?
 	gst-launch-1.0 videotestsrc pattern=snow ! autovideosink
 
 
+Elements :
+========
 
+Source elements :
+---------------
+	-->Source elements generate data for used by a pipeline.
+		Ex: reading from a disk or from a sound card.
+	
+	-->Source element do not accept data they only generate data, it has only a source pad.
+	
+Sink elements :
+-------------
+	-->Sink elements are end points in a media point. 
+	
+	-->They accept data but do not produce anything, it has only a sink pad.
+		Ex: Disk writing, sound card playback, video output.
 
+Filters, Converters, Demuxers, Muxers and Codecs :
+------------------------------------------------
+	-->Filters like elements have both input and output pads,
+	
+	-->They operate on data that they receive on input(sink) pads and provide data on thier output(source) pads.
+		Ex:volume element(filter), vidoe scaler(converter), ogg demuxer (or) a vorvise decoder
 
+	-->Filter like elements can have any number of source (or) sink pads.
+		Ex: a video demuxer will have one sink pad and several source pads.
+	
+	-->Decoders on otherhand will have one source pad and one sink pad.
 
+What is Encoder ?
+---------------
+	-->Encoder is a device, circuit, software program or algorithm which coverts one format to another.
+		Ex: audio encoder converts analog audio to digital audio signal
+	    	    video encoder converts analog video to digital video signal.
 
+What is a Compresser ?
+-------------------
+	-->A compresser encodes data.
+		Ex :audio/video into smaller form.
+	
+what is a Multiplexer and De-multiplxer ?
+---------------------------------------
+	-->Multiplexer 	combines multiple input into one output.
+	-->Demultilexer converts single input to multiple output.
 
+What is codecs ?
+--------------
+	-->Codec stands for coder and decoder.
 
+	-->Codecs are compression technologies and have 2 components.
+		Encoder to compress the files.
+		Decoder to decompress the files.
+		Ex: images (gif, jpeg, png)
+	    	    videos (h.264, mpeg-2)
+	    	    audio (mp3, aac)
+	
+	-->A codec reduces the file size of media file but increases the processing power required to play the fileback correctly.
+	
+	-->It is important for multimedia files since they have large file size.
+	
+	-->NOTE:
+		Without codecs downloads of video/audio would take 3 to 5 times longer than with codecs.
 
+what is Container format ?
+------------------------
+	-->Media file containers (Ex: mp4, avi, ...) are just wrappers gluing together video/audio and other tracks.
+	
+	-->It defines how the video/audio and other data is stored.
+		Ex:3gp
 
+Extracting audio from a media file :
+----------------------------------
+	$gst-launch-1.0 -v filesrc location=big_buck_bunny_720p_stereo.ogg ! oggdemux ! vorbisdec ! avenc_ac3 bitrate=64000 ! filesink location=bunny_audio.ac3
+	
+	filesrc   :	is for reading file at loctaion 
+	oggdemux  : 	is for demultiplexing video and audio from ogg file container,
+			    making those elementary streams available for further processing	
+	
+	vorbisdec : 	is for decoding vorbis codec audio into raw audio format
+	avenc_ac3 :	is for encoding raw audio format into dolby ac3 audio codec
+	
+	-->To create audio encoder in aac format supported by modern web browsser.
+		avenc_aac should be used instead of avenc_ac3
 
-
-
-
-
-
-		 	
+Extracting video from a media file :
+----------------------------------
+	$gst-launch-1.0 -v filesrc location=big_buck_bunny_720p_stereo.ogg ! oggdemux ! theoradec ! x264enc ! filesink location=bunny_video.h264
+	
+	NOTE:
+		h264 is only video 
+		aac is only audio 
